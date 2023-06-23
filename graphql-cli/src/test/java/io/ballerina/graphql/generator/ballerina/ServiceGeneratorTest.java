@@ -35,6 +35,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static io.ballerina.graphql.common.TestUtils.writeContentTo;
+import static io.ballerina.graphql.generator.CodeGeneratorConstants.SERVICE_FILE_NAME;
 
 /**
  * Test class for ServiceGenerator.
@@ -59,7 +60,7 @@ public class ServiceGeneratorTest extends GraphqlTest {
             serviceGenerator.setFileName(fileName);
             serviceGenerator.setMethodDeclarations(serviceTypesGenerator.getServiceMethodDeclarations());
             String generatedServiceContent = serviceGenerator.generateSrc();
-            writeContentTo(generatedServiceContent, this.tmpDir);
+            writeContentTo(generatedServiceContent, this.tmpDir, SERVICE_FILE_NAME);
             Path expectedServiceFile = resourceDir.resolve(Paths.get("serviceGen", "expectedServices", expectedFile));
             String expectedServiceContent = readContentWithFormat(expectedServiceFile);
             String writtenServiceTypesContent =
@@ -89,7 +90,7 @@ public class ServiceGeneratorTest extends GraphqlTest {
             serviceGenerator.setFileName(fileName);
             serviceGenerator.setMethodDeclarations(serviceTypesGenerator.getServiceMethodDeclarations());
             String generatedServiceContent = serviceGenerator.generateSrc();
-            writeContentTo(generatedServiceContent, this.tmpDir);
+            writeContentTo(generatedServiceContent, this.tmpDir, SERVICE_FILE_NAME);
             Path expectedServiceFile = resourceDir.resolve(Paths.get("serviceGen", "expectedServices", expectedFile));
             String expectedServiceContent = readContentWithFormat(expectedServiceFile);
             String writtenServiceTypesContent =
